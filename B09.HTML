@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeleton - Historial de Compras</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      display: grid;
+      gap: 2rem;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    /* Tabla historial */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #007BFF;
+      color: white;
+    }
+
+    /* Favoritos */
+    .favorite {
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .favorite.active {
+      color: gold;
+    }
+
+    /* Botones */
+    .actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-view {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Historial de Compras</h2>
+
+    <!-- Tabla historial -->
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Productos</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+          <th>Favorito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>12-09-2025</td>
+          <td>Café Latte</td>
+          <td>2</td>
+          <td>$5.000</td>
+          <td class="favorite">⭐</td>
+        </tr>
+        <tr>
+          <td>12-09-2025</td>
+          <td>Brownie de Chocolate</td>
+          <td>3</td>
+          <td>$5.400</td>
+          <td class="favorite">⭐</td>
+        </tr>
+        <tr>
+          <td>02-09-2025</td>
+          <td>Sandwich Vegano</td>
+          <td>1</td>
+          <td>$4.200</td>
+          <td class="favorite">⭐</td>
+        </tr>
+        <tr>
+          <td>02-09-2025</td>
+          <td>Café Latte</td>
+          <td>1</td>
+          <td>$2.500</td>
+          <td class="favorite">⭐</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Sección favoritos -->
+    <div>
+      <h3>Lista de Favoritos</h3>
+      <ul>
+        <li>Café Latte ⭐</li>
+        <li>Brownie de Chocolate ⭐</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

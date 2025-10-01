@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skeleton - Asociación de Métodos de Pago</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      display: grid;
+      gap: 2rem;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .payment-methods {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .method-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .method-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .method-info span {
+      font-weight: bold;
+    }
+
+    .actions button {
+      margin-left: 5px;
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-prefer {
+      background: #28a745;
+      color: white;
+    }
+
+    .btn-edit {
+      background: #ffc107;
+      color: white;
+    }
+
+    .btn-delete {
+      background: #dc3545;
+      color: white;
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button.submit {
+      padding: 0.6rem;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Asociación de Métodos de Pago</h2>
+
+    <!-- Métodos de pago guardados -->
+    <div class="payment-methods">
+      <div class="method-card">
+        <div class="method-info">
+          <span>Tarjeta VISA ****1234</span>
+          <small>Vencimiento: 12/27</small>
+        </div>
+        <div class="actions">
+          <button class="btn-prefer">Preferido</button>
+          <button class="btn-edit">Editar</button>
+          <button class="btn-delete">Eliminar</button>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-info">
+          <span>PayPal</span>
+          <small>usuario@test.com</small>
+        </div>
+        <div class="actions">
+          <button class="btn-prefer">Preferido</button>
+          <button class="btn-edit">Editar</button>
+          <button class="btn-delete">Eliminar</button>
+        </div>
+      </div>
+
+      <div class="method-card">
+        <div class="method-info">
+          <span>Transferencia Bancaria</span>
+          <small>Banco Ejemplo</small>
+        </div>
+        <div class="actions">
+          <button class="btn-prefer">Preferido</button>
+          <button class="btn-edit">Editar</button>
+          <button class="btn-delete">Eliminar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario para asociar un nuevo método de pago -->
+    <form>
+      <h3>Agregar nuevo método de pago</h3>
+      <label for="cardNumber">Número de tarjeta</label>
+      <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+
+      <label for="expiry">Vencimiento</label>
+      <input type="text" id="expiry" placeholder="MM/AA">
+
+      <label for="cvv">CVV</label>
+      <input type="text" id="cvv" placeholder="123">
+
+      <button class="submit" type="submit">Guardar método</button>
+    </form>
+  </div>
+</body>
+</html>

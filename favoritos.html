@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favoritos - Libre & Rico</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-success" href="index.html">Libre & Rico</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">Favoritos</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-4">
+  <h2 class="text-success mb-4">Tus Favoritos</h2>
+  <div id="favoritosContainer" class="row g-4">
+    <!-- Favoritos cargados aquí -->
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Diccionario de imágenes por producto
+const imagenesProductos = {
+  "Café Latte": "https://static.vecteezy.com/system/resources/previews/026/746/473/large_2x/latte-coffee-cup-on-wooden-table-coffee-shop-background-ai-generative-free-photo.jpg",
+  "Brownie de Chocolate": "https://cdn7.kiwilimon.com/recetaimagen/34142/640x640/34341.jpg.webp",
+  "Sandwich Vegano": "https://tiaclara.com/wp-content/uploads/2023/05/vegan-eggplant-sandwich-DSC3394.jpg",
+  "Té Verde": "https://static.vecteezy.com/system/resources/previews/031/490/679/large_2x/a-cup-of-green-tea-ai-generated-free-photo.jpg",
+  "Ensalada de Quinoa": "https://www.hola.com/horizon/landscape/5866c4f5b645-ensalada-quinoa-t.jpg",
+};
+
+// Cargar y mostrar los favoritos desde localStorage
+function cargarFavoritos() {
+  const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+  const container = document.getElementById("favoritosContainer");
+  container.innerHTML = "";
+
+  if (favoritos.length === 0) {
+    container.innerHTML = `
+      <div class="col-12">
+        <div class="alert alert-warning text-center">No tienes favoritos aún.</div>
+      </div>`;
+    return;
+  }
+
+  favoritos.forEach(producto => {
+    const div = document.createElement("div");
+    div.classList.add("col-md-4");
+
+    const imagen = imagenesProductos[producto] || "https://via.placeholder.com/400x250?text=Sin+imagen";
+
+    div.innerHTML = `
+      <div class="card shadow-sm h-100">
+        <img src="${imagen}" class="card-img-top" alt="${producto}">
+        <div class="card-body text-center">
+          <h5 class="card-title">${producto}</h5>
+          <button class="btn btn-danger w-100" onclick="quitarFavorito('${producto}')">
+            <i class="bi bi-heart-fill"></i> Quitar
+          </button>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// Quitar producto de favoritos
+function quitarFavorito(producto) {
+  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+  favoritos = favoritos.filter(p => p !== producto);
+  localStorage.setItem("favoritos", JSON.stringify(favoritos));
+  cargarFavoritos();
+}
+
+document.addEventListener("DOMContentLoaded", cargarFavoritos);
+</script>
+
+</body>
+</html>

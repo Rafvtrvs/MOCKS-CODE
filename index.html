@@ -82,6 +82,7 @@
         <li class="nav-item" id="linkIniciarSesion"><a class="nav-link" href="B03.HTML">Inicia Sesión</a></li>
         <li class="nav-item" id="linkRegistrate"><a class="nav-link" href="B01.HTML" target="_blank">Registrate</a></li>
         <li class="nav-item"><a class="nav-link" href="B02.HTML" target="_blank" onclick="accederPortalEmpleados()">Portal Empleados</a></li>
+        <li class="nav-item"><a class="nav-link" href="B09.HTML" target="_blank">Historial de pedidos</a></li>
 
         <li class="nav-item ms-3 carrito-dropdown-container">
           <button class="btn position-relative" onclick="alternarCarritoDesplegable(event)">
@@ -99,12 +100,11 @@
         </li>
 
         <li class="nav-item ms-3" id="favoritos">
-          <button class="btn position-relative" onclick="mostrarFavoritos()">
-            <i class="bi bi-heart icono-navbar"></i>
-            <span id="contadorFavoritos" class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger"></span>
-          </button>
+          <a href="favoritos.html" class="btn position-relative">
+          <i class="bi bi-heart icono-navbar"></i>
+          <span id="contadorFavoritos" class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger"></span>
+          </a>
         </li>
-
         <li class="nav-item dropdown ms-3" id="perfilUsuario" style="display: none;">
           <a class="nav-link dropdown-toggle" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-circle icono-navbar"></i>
@@ -238,17 +238,20 @@
 
   function toggleFavorito(producto, boton) {
     let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-    const icono = boton.querySelector("i");
-    const index = favoritos.indexOf(producto);
+    const card = boton.closest(".card");
+    const imagenUrl = card.querySelector("img").src;
+    const index = favoritos.findIndex(item => item.nombre === producto);
+
     if (index === -1) {
-      favoritos.push(producto);
+      favoritos.push({ nombre: producto, imagen: imagenUrl });
       boton.classList.replace("btn-outline-danger", "btn-danger");
-      icono.classList.replace("bi-heart", "bi-heart-fill");
+      boton.querySelector("i").classList.replace("bi-heart", "bi-heart-fill");
     } else {
       favoritos.splice(index, 1);
       boton.classList.replace("btn-danger", "btn-outline-danger");
-      icono.classList.replace("bi-heart-fill", "bi-heart");
+      boton.querySelector("i").classList.replace("bi-heart-fill", "bi-heart");
     }
+
     localStorage.setItem("favoritos", JSON.stringify(favoritos));
     actualizarContadorFavoritos();
   }
@@ -264,9 +267,13 @@
       let titulo = card.querySelector(".card-title").textContent;
       let boton = card.querySelector(".btn-outline-danger, .btn-danger");
       let icono = boton.querySelector("i");
-      if (favoritos.includes(titulo)) {
+
+      if (favoritos.some(f => f.nombre === titulo)) {
         boton.classList.replace("btn-outline-danger", "btn-danger");
         icono.classList.replace("bi-heart", "bi-heart-fill");
+      } else {
+        boton.classList.replace("btn-danger", "btn-outline-danger");
+        icono.classList.replace("bi-heart-fill", "bi-heart");
       }
     });
   }
@@ -346,5 +353,6 @@
     });
   });
 </script>
+
 </body>
 </html>

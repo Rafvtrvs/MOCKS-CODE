@@ -1,129 +1,197 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skeleton - Catálogo y Administración de Productos</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<div class="popup-container">
+  <h2>Administrar Productos</h2>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-    }
+  <!-- Botón agregar producto -->
+  <div class="actions">
+    <button class="btn-add" id="btnAgregar">Agregar Producto</button>
+  </div>
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      display: grid;
-      gap: 2rem;
-    }
-
-    h2 {
-      text-align: center;
-    }
-
-    /* Tabla de productos */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background: #007BFF;
-      color: white;
-    }
-
-    /* Botones de acción */
-    .actions {
-      display: flex;
-      gap: 1rem;
-    }
-
-    button {
-      padding: 0.6rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .btn-add {
-      background-color: #28a745;
-      color: white;
-    }
-
-    .btn-edit {
-      background-color: #ffc107;
-      color: white;
-    }
-
-    .btn-delete {
-      background-color: #dc3545;
-      color: white;
-    }
-
-    /* Formulario para agregar/editar productos */
-    .product-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      background: #f9f9f9;
-      padding: 15px;
-      border-radius: 5px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.3rem;
-      font-size: 0.9rem;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #aaa;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>Catálogo y Administración de Productos</h2>
-
-    <!-- Botón agregar producto -->
-    <div class="actions">
-      <button class="btn-add">Agregar Producto</button>
+  <!-- Formulario -->
+  <div class="product-form" id="productForm">
+    <div>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
     </div>
+    <div>
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" required>
+    </div>
+    <div>
+      <label for="categoria">Categoría:</label>
+      <select id="categoria" required>
+        <option value="Bebidas">Bebidas</option>
+        <option value="Postres">Postres</option>
+        <option value="Panadería">Panadería</option>
+      </select>
+    </div>
+    <div style="align-self: end;">
+      <button id="guardarProducto" class="btn-add">Guardar</button>
+    </div>
+  </div>
 
-    <!-- Tabla de productos -->
-    <table>
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Precio</th>
-          <th>Categoría</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Café Latte</td>
-          <td>$2.500</td>
-          <td>Bebidas</td>
-          <td class="actions">
-            <button class="btn-edit">Editar</button>
+  <!-- Tabla -->
+  <table>
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Categoría</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tablaProductos"></tbody>
+  </table>
+</div>
+
+<style>
+.popup-container {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Título */
+.popup-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Botones */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-add { background-color: #28a745; color: white; }
+.btn-edit { background-color: #ffc107; color: white; }
+.btn-delete { background-color: #dc3545; color: white; }
+
+/* Formulario */
+.product-form {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+}
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+input, select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+th, td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+th {
+  background: #007BFF;
+  color: white;
+}
+.actions-table {
+  display: flex;
+  gap: 0.5rem;
+}
+</style>
+
+<script>
+let productos = [];
+let editIndex = null;
+
+const btnAgregar = document.getElementById("btnAgregar");
+const productForm = document.getElementById("productForm");
+const guardarProducto = document.getElementById("guardarProducto");
+const tablaProductos = document.getElementById("tablaProductos");
+
+btnAgregar.addEventListener("click", () => {
+  productForm.style.display = "grid";
+  editIndex = null;
+  limpiarFormulario();
+});
+
+function limpiarFormulario() {
+  document.getElementById("nombre").value = "";
+  document.getElementById("precio").value = "";
+  document.getElementById("categoria").value = "Bebidas";
+}
+
+guardarProducto.addEventListener("click", () => {
+  const nombre = document.getElementById("nombre").value.trim();
+  const precio = parseFloat(document.getElementById("precio").value);
+  const categoria = document.getElementById("categoria").value;
+
+  if (!nombre || !precio) {
+    alert("Completa todos los campos");
+    return;
+  }
+
+  if (editIndex !== null) {
+    productos[editIndex] = { nombre, precio, categoria };
+  } else {
+    productos.push({ nombre, precio, categoria });
+  }
+
+  productForm.style.display = "none";
+  renderTabla();
+});
+
+function renderTabla() {
+  tablaProductos.innerHTML = "";
+  productos.forEach((p, index) => {
+    tablaProductos.innerHTML += `
+      <tr>
+        <td>${p.nombre}</td>
+        <td>$${p.precio}</td>
+        <td>${p.categoria}</td>
+        <td class="actions-table">
+          <button class="btn-edit" onclick="editarProducto(${index})">Editar</button>
+          <button class="btn-delete" onclick="eliminarProducto(${index})">Eliminar</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function editarProducto(index) {
+  editIndex = index;
+  const producto = productos[index];
+  document.getElementById("nombre").value = producto.nombre;
+  document.getElementById("precio").value = producto.precio;
+  document.getElementById("categoria").value = producto.categoria;
+  productForm.style.display = "grid";
+}
+
+function eliminarProducto(index) {
+  if (confirm("¿Deseas eliminar este producto?")) {
+    productos.splice(index, 1);
+    renderTabla();
+  }
+}
+
+renderTabla();
+</script>

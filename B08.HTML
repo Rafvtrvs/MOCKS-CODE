@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skeleton - Carrito de Compras</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <title>Carrito de Compras - Libre & Rico</title>
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
     body {
       font-family: Arial, sans-serif;
       background: #f4f4f4;
@@ -21,47 +19,59 @@
       max-width: 1200px;
       margin: auto;
       background: white;
-      padding: 20px;
+      padding: 20px 40px;
       border-radius: 10px;
-      border: 1px solid #ccc;
-      display: grid;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
       gap: 2rem;
+      flex-wrap: wrap;
     }
 
     h2 {
-      text-align: center;
+      width: 100%;
+      margin-bottom: 1rem;
+      color: #333;
     }
 
-    /* Carrito */
-    .cart {
-      display: grid;
-      gap: 1rem;
+    .cart-main, .cart-summary {
+      padding: 15px;
+      border-radius: 8px;
     }
 
-    /* Tabla del carrito */
+    .cart-main {
+      flex: 3;
+    }
+
+    .cart-summary {
+      flex: 1;
+      background: #e9ecef;
+      border: 1px solid #ddd;
+      min-width: 280px;
+      align-self: flex-start;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
+      margin-bottom: 1.5rem;
     }
 
     th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
+      padding: 12px 10px;
+      border: 1px solid #e0e0e0;
       text-align: left;
+      vertical-align: middle;
     }
 
     th {
-      background: #007BFF;
+      background: #4CAF50;
       color: white;
+      font-weight: bold;
     }
 
-    /* Botones */
-    .actions {
-      display: flex;
-      gap: 1rem;
-    }
-
-    button {
+    .btn-remove {
+      background-color: #dc3545;
+      color: white;
       padding: 0.6rem 1rem;
       border: none;
       border-radius: 5px;
@@ -71,101 +81,247 @@
     .btn-add {
       background-color: #28a745;
       color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    .btn-remove {
-      background-color: #dc3545;
-      color: white;
-    }
-
-    .btn-update {
-      background-color: #ffc107;
-      color: white;
-    }
-
-    /* Icono carrito */
-    .cart-icon {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #007BFF;
+    .btn-checkout {
+      background-color: #007BFF;
       color: white;
       padding: 10px;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%;
+      margin-top: 15px;
+      border: none;
+      border-radius: 5px;
     }
 
-    /* Cantidad */
-    input[type="number"] {
-      width: 60px;
-      padding: 5px;
-      border: 1px solid #aaa;
+    .product-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .product-image {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
       border-radius: 5px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      width: 120px;
+    }
+
+    .quantity-controls button {
+      background: #f8f8f8;
+      color: #333;
+      border: none;
+      padding: 0 10px;
+      height: 40px;
+      font-size: 1.2rem;
+    }
+
+    .quantity-display {
+      text-align: center;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      border-left: 1px solid #eee;
+      border-right: 1px solid #eee;
+      font-weight: bold;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .summary-total {
+      font-size: 1.4rem;
+      border-top: 2px solid #ccc;
+      padding-top: 10px;
+      margin-top: 10px;
     }
   </style>
 </head>
+
 <body>
-  <!-- Icono carrito -->
-  <div class="cart-icon">🛒</div>
-
   <div class="container">
-    <h2>Carrito de Compras</h2>
+    <h2 class = "text-success fw-bold">Resumen de tu Carrito de Compras</h2>
 
-    <!-- Tabla carrito -->
-    <div class="cart">
-      <table>
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Subtotal</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Café Latte</td>
-            <td>$2.500</td>
-            <td><input type="number" value="2" min="1"></td>
-            <td>$5.000</td>
-            <td class="actions">
-              <button class="btn-update">Actualizar</button>
-              <button class="btn-remove">Eliminar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Sandwich Vegano</td>
-            <td>$4.200</td>
-            <td><input type="number" value="1" min="1"></td>
-            <td>$4.200</td>
-            <td class="actions">
-              <button class="btn-update">Actualizar</button>
-              <button class="btn-remove">Eliminar</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Brownie de Chocolate</td>
-            <td>$1.800</td>
-            <td><input type="number" value="3" min="1"></td>
-            <td>$5.400</td>
-            <td class="actions">
-              <button class="btn-update">Actualizar</button>
-              <button class="btn-remove">Eliminar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="cart-main">
+      <div class="cart">
+        <table id="cart-table" class="table">
+          <thead>
+            <tr>
+              <th style="width: 40%;">Producto</th>
+              <th style="width: 15%;">Precio Unitario</th>
+              <th style="width: 20%;">Cantidad</th>
+              <th style="width: 15%;">Subtotal</th>
+              <th style="width: 10%;">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items">
+            <!-- Items generados dinámicamente -->
+          </tbody>
+        </table>
 
-      <!-- Total -->
-      <div style="text-align:right; font-weight:bold; font-size:1.2rem;">
-        Total: $14.600
+        <div class="text-end">
+          <button class="btn-add" onclick="window.location.href='index.html'">Continuar Comprando</button>
+        </div>
       </div>
     </div>
+
+    <div class="cart-summary">
+      <h3>Resumen del Pedido</h3>
+      <div class="summary-item">
+        <span>Subtotal de productos:</span>
+        <span id="summary-subtotal">$0</span>
+      </div>
+      <div class="summary-item">
+        <span>Envío (Estándar):</span>
+        <span id="summary-shipping">$3.000</span>
+      </div>
+      <div class="summary-item summary-total">
+        <span>Total a Pagar:</span>
+        <span id="summary-total-final">$0</span>
+      </div>
+      <button class="btn-checkout" onclick="alert('¡Procediendo al pago!')">Proceder al Pago</button>
+    </div>
   </div>
+
+  <script>
+    const shippingCost = 3000;
+
+    function formatPrice(number) {
+      return `$${number.toLocaleString('es-CL', {minimumFractionDigits: 0})}`;
+    }
+
+    function loadCartItems() {
+      let cart = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      if (cart.length === 0 || !cart.some(item => item.imagen)) {
+        cart = [
+          { producto: "Sandwich Vegano", precio: 4500, cantidad: 1, imagen: "https://tiaclara.com/wp-content/uploads/2023/05/vegan-eggplant-sandwich-DSC3394.jpg" },
+          { producto: "Café Latte", precio: 2800, cantidad: 2, imagen: "https://www.thespruceeats.com/thmb/0CK65lVOSHILEZXSh1dVJ_Hl4Hc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/how-to-make-caffe-latte-765372-hero-01-2417e49c4a9c4789b3abdd36885f06ab.jpg" },
+          { producto: "Brownie", precio: 2000, cantidad: 3, imagen: "https://images.cookforyourlife.org/wp-content/uploads/2020/06/Dark-Chocolate-Brownies-shutterstock_112430981.jpg" }
+        ];
+        localStorage.setItem("carrito", JSON.stringify(cart));
+      }
+
+      const tbody = document.getElementById("cart-items");
+      tbody.innerHTML = '';
+
+      if (cart.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="text-center">Tu carrito está vacío.</td></tr>`;
+        updateSummary();
+        return;
+      }
+
+      cart.forEach(item => {
+        const subtotal = item.precio * item.cantidad;
+        tbody.innerHTML += `
+          <tr data-producto="${item.producto}">
+            <td>
+              <div class="product-info">
+                <img src="${item.imagen}" alt="${item.producto}" class="product-image">
+                <span>${item.producto}</span>
+              </div>
+            </td>
+            <td class="item-price">${formatPrice(item.precio)}</td>
+            <td>
+              <div class="quantity-controls">
+                <button onclick="changeQuantity(this, -1)"><i class="bi bi-dash"></i></button>
+                <span class="quantity-display">${item.cantidad}</span>
+                <button onclick="changeQuantity(this, 1)"><i class="bi bi-plus"></i></button>
+              </div>
+            </td>
+            <td class="item-subtotal">${formatPrice(subtotal)}</td>
+            <td class="actions">
+              <button class="btn-remove btn-sm" onclick="removeItem(this)"><i class="bi bi-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      });
+
+      updateSummary();
+    }
+
+    function changeQuantity(buttonElement, delta) {
+      const controls = buttonElement.closest('.quantity-controls');
+      const display = controls.querySelector('.quantity-display');
+      let currentQuantity = parseInt(display.textContent);
+      let newQuantity = currentQuantity + delta;
+
+      if (newQuantity < 1) {
+        if (confirm("¿Deseas eliminar este producto del carrito?")) {
+          removeItem(buttonElement);
+        }
+        return;
+      }
+
+      display.textContent = newQuantity;
+      updateItemRow(buttonElement.closest('tr'), newQuantity);
+    }
+
+    function updateItemRow(row, newQuantity) {
+      const producto = row.dataset.producto;
+      const priceCell = row.querySelector('.item-price').textContent;
+      const priceUnit = parseInt(priceCell.replace('$', '').replace(/\./g, ''));
+      const newSubtotal = newQuantity * priceUnit;
+
+      row.querySelector('.item-subtotal').textContent = formatPrice(newSubtotal);
+
+      const cart = JSON.parse(localStorage.getItem("carrito")) || [];
+      const itemIndex = cart.findIndex(item => item.producto === producto);
+      if (itemIndex !== -1) {
+        cart[itemIndex].cantidad = newQuantity;
+        localStorage.setItem("carrito", JSON.stringify(cart));
+      }
+
+      updateSummary();
+    }
+
+    function removeItem(buttonElement) {
+      const row = buttonElement.closest('tr');
+      const producto = row.dataset.producto;
+
+      if (confirm(`¿Estás seguro de que quieres eliminar "${producto}"?`)) {
+        row.remove();
+        const cart = JSON.parse(localStorage.getItem("carrito")) || [];
+        const updatedCart = cart.filter(item => item.producto !== producto);
+        localStorage.setItem("carrito", JSON.stringify(updatedCart));
+
+        if (updatedCart.length === 0) {
+          const tbody = document.getElementById("cart-items");
+          tbody.innerHTML = `<tr><td colspan="5" class="text-center">Tu carrito está vacío.</td></tr>`;
+        }
+
+        updateSummary();
+      }
+    }
+
+    function updateSummary() {
+      const cart = JSON.parse(localStorage.getItem("carrito")) || [];
+      let subtotal = cart.reduce((sum, item) => sum + item.precio * (item.cantidad || 1), 0);
+      document.getElementById("summary-subtotal").textContent = formatPrice(subtotal);
+
+      const finalShippingCost = subtotal > 0 ? shippingCost : 0;
+      document.getElementById("summary-shipping").textContent = formatPrice(finalShippingCost);
+      document.getElementById("summary-total-final").textContent = formatPrice(subtotal + finalShippingCost);
+    }
+
+    document.addEventListener("DOMContentLoaded", loadCartItems);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

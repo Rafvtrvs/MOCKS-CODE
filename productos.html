@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos - Libre & Rico</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .productos-container {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .producto-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .producto-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .producto-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .producto-info {
+      padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .producto-info h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .producto-info p {
+      font-size: 0.95rem;
+      color: #555;
+      flex-grow: 1;
+    }
+
+    .producto-precio {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin: 10px 0;
+      color: #28a745;
+    }
+
+    .producto-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .producto-actions button {
+      flex: 1;
+      padding: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-comprar {
+      background-color: green;
+      color: white;
+    }
+
+    .btn-favorito {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .imagen-reducida {
+      max-width: 1500px;
+      width: 100%;
+      max-height: 800px;
+      height: auto;
+    }
+
+    .shadow-text {
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+
+    .icono-navbar {
+      font-size: 1.25rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .producto-info h3 {
+        font-size: 1rem;
+      }
+      .producto-precio {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="color:rgba(67, 196, 67, 0.79)">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-success" href="index.html">Libre & Rico, Panificados Sin Gluten</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto text-e">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+        <li class="nav-item" id="linkIniciarSesion">
+          <a class="nav-link" href="B03.HTML">Inicia Sesión</a>
+        </li>
+        <li class="nav-item" id="linkRegistrate">
+          <a class="nav-link" href="B01.HTML" target="_blank">Registrate</a>
+        </li>
+       <li class="nav-item ms-3">
+          <a class="btn position-relative" href="B08.html">
+        <i class="bi bi-cart icono-navbar" style="color: green"></i>
+          <span id="contadorCarrito" class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger"></span>
+         </a>
+        </li>
+
+
+        <li class="nav-item ms-3" id="favoritos">
+          <button class="btn position-relative" onclick="mostrarFavoritos()">
+            <i class="bi bi-heart icono-navbar"></i>
+            <span id="contadorFavoritos" class="position-absolute top-50 start-100 translate-middle badge rounded-pill bg-danger"></span>
+          </button>
+        </li>
+
+        <li class="nav-item dropdown ms-3" id="perfilUsuario" style="display: none;">
+          <a class="nav-link dropdown-toggle" href="#" id="perfilDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle icono-navbar"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="perfilDropdown">
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="index.html" id="cerrarSesion">Cerrar sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<h2 class = "text-success fw-bold">Nuestros Productos</h2>
+<div class="container mb-3">
+  <button id="abrirPopup" class="btn btn-success" style="display:none;">Editar Producto</button>
+  <div id="popup" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar">&times;</span>
+    <div id="contenidoFormulario"></div>
+  </div>
+</div>
+</div>
+
+<div class="productos-container">
+<!-- Producto 1 -->
+<div class="producto-card">
+  <img src="https://tiaclara.com/wp-content/uploads/2023/05/vegan-eggplant-sandwich-DSC3394.jpg" alt="Sandwich Vegano" class="producto-img">
+  <div class="producto-info">
+    <h3>Sandwich Vegano</h3>
+    <div class="producto-precio"><h1 class="fw-bold">$4.500</h1></div>
+    <div class="producto-actions">
+       <button onclick="agregarAlCarrito('Sandwich Vegano', 4500)" class="btn-comprar">Agregar al carrito</button>
+       <button onclick="toggleFavorito('Sandwich Vegano', this)" class="btn btn-outline-danger">
+         <i class="bi bi-heart"></i> Favorito
+       </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 2 -->
+<div class="producto-card">
+  <img src="https://www.thespruceeats.com/thmb/0CK65lVOSHILEZXSh1dVJ_Hl4Hc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/how-to-make-caffe-latte-765372-hero-01-2417e49c4a9c4789b3abdd36885f06ab.jpg" alt="Café Latte" class="producto-img">
+  <div class="producto-info">
+    <h3>Café Latte</h3>
+    <div class="producto-precio"><h1 class="fw-bold">$2.800</h1></div>
+    <div class="producto-actions">
+       <button onclick="agregarAlCarrito('Café Latte', 2800)" class="btn-comprar">Agregar al carrito</button>
+       <button onclick="toggleFavorito('Café Latte', this)" class="btn btn-outline-danger">
+         <i class="bi bi-heart"></i> Favorito
+       </button>
+    </div>
+  </div>
+</div>
+
+<!-- Producto 3 -->
+<div class="producto-card">
+  <img src="https://images.cookforyourlife.org/wp-content/uploads/2020/06/Dark-Chocolate-Brownies-shutterstock_112430981.jpg" alt="Brownie" class="producto-img">
+  <div class="producto-info">
+    <h3>Brownie</h3>
+    <div class="producto-precio"><h1 class="fw-bold">$1.800</h1></div>
+    <div class="producto-actions">
+       <button onclick="agregarAlCarrito('Brownie', 1800)" class="btn-comprar">Agregar al carrito</button>
+       <button onclick="toggleFavorito('Brownie', this)" class="btn btn-outline-danger">
+         <i class="bi bi-heart"></i> Favorito
+       </button>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!--SCRIPT-->
+<script>
+function agregarAlCarrito(producto, precio) {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  carrito.push({ producto, precio });
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  actualizarContadorCarrito();
+}
+
+function actualizarContadorCarrito() {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  document.getElementById("contadorCarrito").textContent = carrito.length;
+}
+
+function toggleFavorito(producto, boton) {
+  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+  const icono = boton.querySelector("i");
+
+  const index = favoritos.indexOf(producto);
+  if (index === -1) {
+    favoritos.push(producto);
+    boton.classList.remove("btn-outline-danger");
+    boton.classList.add("btn-danger");
+    icono.classList.remove("bi-heart");
+    icono.classList.add("bi-heart-fill");
+  } else {
+    favoritos.splice(index, 1);
+    boton.classList.remove("btn-danger");
+    boton.classList.add("btn-outline-danger");
+    icono.classList.remove("bi-heart-fill");
+    icono.classList.add("bi-heart");
+  }
+
+  localStorage.setItem("favoritos", JSON.stringify(favoritos));
+  actualizarContadorFavoritos();
+}
+
+function actualizarContadorFavoritos() {
+  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+  document.getElementById("contadorFavoritos").textContent = favoritos.length;
+}
+
+function marcarFavoritos() {
+  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+  document.querySelectorAll(".card").forEach(card => {
+    let titulo = card.querySelector(".card-title").textContent;
+    let boton = card.querySelector(".btn-outline-danger, .btn-danger");
+    let icono = boton.querySelector("i");
+
+    if (favoritos.includes(titulo)) {
+      boton.classList.remove("btn-outline-danger");
+      boton.classList.add("btn-danger");
+      icono.classList.remove("bi-heart");
+      icono.classList.add("bi-heart-fill");
+    }
+  });
+}
+
+function mostrarCarrito() {
+  window.location.href = "./B08.HTML"; // Navega a B08.html
+}
+
+function mostrarFavoritos() {
+  let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+  console.log("Favoritos:", favoritos); // Aquí puedes añadir lógica para mostrar favoritos
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  actualizarContadorCarrito();
+  actualizarContadorFavoritos();
+  marcarFavoritos();
+
+  const usuario = localStorage.getItem("usuario");
+  const perfilElemento = document.getElementById("perfilUsuario");
+  const favoritosElemento = document.getElementById("favoritos");
+  const linkIniciarSesion = document.getElementById("linkIniciarSesion");
+  const linkRegistrate = document.getElementById("linkRegistrate");
+
+  if (usuario) {
+    perfilElemento.style.display = "block";
+    favoritosElemento.style.display = "block";
+    linkIniciarSesion.style.display = "none";
+    linkRegistrate.style.display = "none";
+  } else {
+    perfilElemento.style.display = "none";
+    favoritosElemento.style.display = "none";
+    linkIniciarSesion.style.display = "block";
+    linkRegistrate.style.display = "block";
+  }
+
+  document.getElementById("cerrarSesion")?.addEventListener("click", function () {
+    localStorage.removeItem("usuario");
+    perfilElemento.style.display = "none";
+    favoritosElemento.style.display = "none";
+    linkIniciarSesion.style.display = "block";
+    linkRegistrate.style.display = "block";
+  });
+});
+</script>
+</script>
+</body>
+</html>

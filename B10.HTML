@@ -4,123 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skeleton - Medios de Pago</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      display: grid;
-      gap: 2rem;
-    }
-
-    h2 {
-      text-align: center;
-    }
-
-    /* Grid de métodos de pago */
-    .payment-methods {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .method {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 15px;
-      background: #f9f9f9;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .method:hover {
-      background: #e9ecef;
-    }
-
-    .method img {
-      width: 60px;
-      height: auto;
-      margin-bottom: 10px;
-    }
-
-    button {
-      padding: 0.6rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      background: #28a745;
-      color: white;
-      font-weight: bold;
-    }
-
-    /* Mensaje de confirmación/error */
-    .message {
-      padding: 10px;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
-    .success {
-      background-color: #28a745;
-      color: white;
-    }
-
-    .error {
-      background-color: #dc3545;
-      color: white;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
-    <h2>Integración de Medios de Pago</h2>
+    <h2></h2>
 
     <!-- Selección de método de pago -->
     <div class="payment-methods">
       <div class="method" id="creditCard">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Tarjeta Crédito/Débito">
-        <span>Tarjeta de Crédito/Débito</span>
-        <button>Pagar</button>
+        <img src="" alt="">
+        <span></span>
+        <button></button>
       </div>
 
       <div class="method" id="bankTransfer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Bank_icon.svg" alt="Transferencia Bancaria">
-        <span>Transferencia Bancaria</span>
-        <button>Pagar</button>
+        <img src="" alt="">
+        <span></span>
+        <button></button>
       </div>
 
       <div class="method" id="paypal">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
-        <span>Billetera Digital - PayPal</span>
-        <button>Pagar</button>
+        <img src="" alt="">
+        <span></span>
+        <button></button>
       </div>
     </div>
 
     <!-- Mensaje de resultado -->
-    <div class="message success" style="display:none;">
-      Pago procesado correctamente.
-    </div>
-    <div class="message error" style="display:none;">
-      Error en el pago. Intenta nuevamente.
-    </div>
+    <div class="message success"></div>
+    <div class="message error"></div>
   </div>
 </body>
 </html>

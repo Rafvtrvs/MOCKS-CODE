@@ -3,98 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Historial de Compras - Libre & Rico</title>
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    padding: 20px;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    display: grid;
-    gap: 2rem;
-  }
-
-  h2 {
-    text-align: center;
-    color: #28a745;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-
-  th {
-    background: #007BFF;
-    color: white;
-  }
-
-  tr:nth-child(even) {
-    background: #f9f9f9;
-  }
-
-  .favorite {
-    cursor: pointer;
-    font-size: 1.2rem;
-  }
-
-  .favorite.active {
-    color: gold;
-  }
-
-  .actions {
-    display: flex;
-    gap: 1rem;
-  }
-
-  button {
-    padding: 0.6rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-
-  .btn-view {
-    background-color: #28a745;
-    color: white;
-  }
-
-  .btn-clear {
-    background-color: #dc3545;
-    color: white;
-  }
-
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-
-  ul li {
-    padding: 5px;
-    font-size: 1rem;
-  }
-</style>
+<title>Skeleton - Historial de Compras</title>
 </head>
 <body>
 <div class="container">
-  <h2>Historial de Compras</h2>
+  <h2></h2>
 
   <!-- Tabla historial -->
   <table id="tablaHistorial">
@@ -108,74 +21,24 @@
       </tr>
     </thead>
     <tbody>
-      <!-- Dinámico -->
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
 
   <!-- Sección favoritos -->
   <div>
-    <h3>Lista de Favoritos</h3>
-    <ul id="listaFavoritos"></ul>
-    <button class="btn-clear" onclick="limpiarFavoritos()">Limpiar Favoritos</button>
+    <h3></h3>
+    <ul id="listaFavoritos">
+      <li></li>
+    </ul>
+    <button></button>
   </div>
 </div>
-
-<script>
-const historial = [
-  { fecha: "12-09-2025", producto: "Café Latte", cantidad: 2, total: 5000 },
-  { fecha: "12-09-2025", producto: "Brownie de Chocolate", cantidad: 3, total: 5400 },
-  { fecha: "02-09-2025", producto: "Sandwich Vegano", cantidad: 1, total: 4200 },
-  { fecha: "02-09-2025", producto: "Café Latte", cantidad: 1, total: 2500 }
-];
-
-let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-
-function renderizarHistorial() {
-  const tbody = document.querySelector("#tablaHistorial tbody");
-  tbody.innerHTML = "";
-
-  historial.forEach((item, index) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${item.fecha}</td>
-      <td>${item.producto}</td>
-      <td>${item.cantidad}</td>
-      <td>$${item.total}</td>
-      <td class="favorite ${favoritos.includes(item.producto) ? "active" : ""}" onclick="toggleFavorito('${item.producto}')">⭐</td>
-    `;
-    tbody.appendChild(tr);
-  });
-
-  renderizarFavoritos();
-}
-
-function toggleFavorito(producto) {
-  if (favoritos.includes(producto)) {
-    favoritos = favoritos.filter(p => p !== producto);
-  } else {
-    favoritos.push(producto);
-  }
-  localStorage.setItem("favoritos", JSON.stringify(favoritos));
-  renderizarHistorial();
-}
-
-function renderizarFavoritos() {
-  const lista = document.getElementById("listaFavoritos");
-  lista.innerHTML = "";
-  favoritos.forEach(fav => {
-    const li = document.createElement("li");
-    li.textContent = fav + " ⭐";
-    lista.appendChild(li);
-  });
-}
-
-function limpiarFavoritos() {
-  favoritos = [];
-  localStorage.removeItem("favoritos");
-  renderizarHistorial();
-}
-
-document.addEventListener("DOMContentLoaded", renderizarHistorial);
-</script>
 </body>
 </html>

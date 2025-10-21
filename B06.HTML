@@ -3,125 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skeleton - Estado de Producto</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      display: grid;
-      gap: 2rem;
-    }
-
-    h2 {
-      text-align: center;
-    }
-
-    /* Tabla de productos con estado */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-
-    th {
-      background: #007BFF;
-      color: white;
-    }
-
-    /* Estados */
-    .status {
-      padding: 0.4rem 0.7rem;
-      border-radius: 5px;
-      font-size: 0.9rem;
-      color: white;
-      font-weight: bold;
-    }
-
-    .disponible {
-      background-color: #28a745;
-    }
-
-    .agotado {
-      background-color: #dc3545;
-    }
-
-    .reposicion {
-      background-color: #ffc107;
-      color: black;
-    }
-
-    .descontinuado {
-      background-color: #6c757d;
-    }
-
-    /* Botones */
-    .actions {
-      display: flex;
-      gap: 1rem;
-    }
-
-    button {
-      padding: 0.6rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .btn-edit {
-      background-color: #ffc107;
-      color: white;
-    }
-
-    /* Formulario de estado */
-    .status-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      background: #f9f9f9;
-      padding: 15px;
-      border-radius: 5px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.3rem;
-      font-size: 0.9rem;
-    }
-
-    select, input {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #aaa;
-      border-radius: 5px;
-    }
-  </style>
+  <title>Estado de Producto</title>
 </head>
 <body>
+
+  <!-- Navbar -->
+
+  <!-- Container principal -->
   <div class="container">
     <h2>Estado de Producto</h2>
 
-    <!-- Tabla con estados -->
+    <!-- Tabla de productos -->
     <table>
       <thead>
         <tr>
@@ -132,23 +24,36 @@
         </tr>
       </thead>
       <tbody>
+        <!-- Fila de producto -->
         <tr>
-          <td>Café Latte</td>
-          <td><span class="status disponible">Disponible</span></td>
-          <td>-</td>
-          <td class="actions">
-            <button class="btn-edit">Editar Estado</button>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button>Editar Estado</button>
           </td>
         </tr>
-        <tr>
-          <td>Sandwich Vegano</td>
-          <td><span class="status agotado">Agotado</span></td>
-          <td>-</td>
-          <td class="actions">
-            <button class="btn-edit">Editar Estado</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Brownie de Chocolate</td>
-          <td><span class="status reposicion">En reposición</span></td>
-          <td>2 días</td>
+      </tbody>
+    </table>
+
+    <!-- Formulario para editar estado -->
+    <form>
+      <label for="producto">Producto</label>
+      <input type="text" id="producto">
+
+      <label for="estado">Estado</label>
+      <select id="estado">
+        <option></option>
+      </select>
+
+      <label for="fecha">Fecha estimada</label>
+      <input type="text" id="fecha">
+
+      <button>Guardar</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+
+</body>
+</html>

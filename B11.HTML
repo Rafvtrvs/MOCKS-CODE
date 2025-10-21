@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skeleton - Comprobante Digital</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: Arial, sans-serif;
@@ -28,27 +24,13 @@
       gap: 2rem;
     }
 
-    h2 {
-      text-align: center;
-    }
+    h2 { text-align: center; }
 
-    /* Comprobante */
     .receipt {
       background: #f9f9f9;
       padding: 15px;
       border-radius: 5px;
       border: 1px solid #ddd;
-    }
-
-    .receipt-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .receipt-header img {
-      width: 100px;
-      height: auto;
     }
 
     table {
@@ -63,57 +45,40 @@
       text-align: left;
     }
 
-    th {
-      background: #007BFF;
-      color: white;
-    }
-
-    .confirmation-message {
-      padding: 10px;
-      border-radius: 5px;
-      background: #28a745;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .error-message {
-      padding: 10px;
-      border-radius: 5px;
-      background: #dc3545;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-    }
+    th { background: #007BFF; color: white; }
 
     button {
       padding: 0.6rem 1rem;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      background: #007BFF;
-      color: white;
+    }
+
+    .confirmation-message,
+    .error-message {
+      padding: 10px;
+      border-radius: 5px;
       font-weight: bold;
+      text-align: center;
+      display: none;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Comprobante Digital</h2>
+    <h2></h2>
 
     <!-- Mensaje de confirmación -->
-    <div class="confirmation-message">
-      Tu comprobante ha sido enviado al correo registrado.
-    </div>
+    <div class="confirmation-message"></div>
 
     <!-- Comprobante -->
     <div class="receipt">
       <div class="receipt-header">
-        <h3>Pedido N°12345</h3>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_Tienda.svg" alt="Logo Tienda">
+        <h3></h3>
+        <img src="" alt="">
       </div>
-      <p><strong>Fecha:</strong> 15-09-2025</p>
-      <p><strong>Cliente:</strong> usuario@test.com</p>
+      <p><strong>Fecha:</strong></p>
+      <p><strong>Cliente:</strong></p>
 
       <table>
         <thead>
@@ -123,33 +88,20 @@
             <th>Precio</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Café Latte</td>
-            <td>2</td>
-            <td>$5.000</td>
-          </tr>
-          <tr>
-            <td>Brownie de Chocolate</td>
-            <td>1</td>
-            <td>$1.800</td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
       </table>
 
-      <p><strong>Total:</strong> $6.800</p>
-      <p><strong>Método de pago:</strong> Tarjeta VISA</p>
+      <p><strong>Total:</strong></p>
+      <p><strong>Método de pago:</strong></p>
     </div>
 
     <!-- Botón de reenvío -->
     <div style="text-align:center;">
-      <button>Reenviar Comprobante</button>
+      <button></button>
     </div>
 
     <!-- Mensaje de error -->
-    <div class="error-message" style="display:none;">
-      Error en el envío del comprobante. Puedes descargarlo desde "Mis pedidos".
-    </div>
+    <div class="error-message"></div>
   </div>
 </body>
 </html>

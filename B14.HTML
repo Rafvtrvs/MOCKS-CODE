@@ -5,88 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skeleton - Selección de Modalidad de Entrega</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      display: grid;
-      gap: 2rem;
-    }
-
-    h2 {
-      text-align: center;
-    }
-
-    .delivery-options {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .option-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .option-card:hover {
-      background: #e9ecef;
-    }
-
-    .option-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .option-info span {
-      font-weight: bold;
-    }
-
-    .option-info small {
-      color: #555;
-    }
-
-    .selected {
-      border: 2px solid #007BFF;
-    }
-
-    .summary {
-      padding: 10px;
-      background: #f1f1f1;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    button {
-      padding: 0.6rem 1rem;
-      background: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+    .container { max-width: 700px; margin: auto; background: white; padding: 20px; border-radius: 10px; display: grid; gap: 2rem; }
+    h2 { text-align: center; }
+    .delivery-options { display: grid; gap: 1rem; }
+    .option-card { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-radius: 8px; cursor: pointer; }
+    .option-info { display: flex; flex-direction: column; }
+    .summary { padding: 10px; border-radius: 8px; }
+    button { padding: 0.6rem 1rem; border-radius: 5px; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -94,37 +21,37 @@
     <h2>Seleccionar Modalidad de Entrega</h2>
 
     <div class="delivery-options">
-      <div class="option-card selected">
-        <div class="option-info">
-          <span>Retiro en tienda</span>
-          <small>Costo: $0 — Entrega inmediata</small>
-        </div>
-        <input type="radio" name="delivery" checked>
-      </div>
-
       <div class="option-card">
         <div class="option-info">
-          <span>Despacho a domicilio</span>
-          <small>Costo: $5.000 — Entrega en 3 días hábiles</small>
+          <span></span>
+          <small></small>
         </div>
         <input type="radio" name="delivery">
       </div>
 
       <div class="option-card">
         <div class="option-info">
-          <span>Entrega express</span>
-          <small>Costo: $8.000 — Entrega en 1 día</small>
+          <span></span>
+          <small></small>
+        </div>
+        <input type="radio" name="delivery">
+      </div>
+
+      <div class="option-card">
+        <div class="option-info">
+          <span></span>
+          <small></small>
         </div>
         <input type="radio" name="delivery">
       </div>
     </div>
 
     <div class="summary">
-      <p><strong>Modalidad seleccionada:</strong> Retiro en tienda</p>
-      <p><strong>Costo de envío:</strong> $0</p>
+      <p><strong></strong></p>
+      <p><strong></strong></p>
     </div>
 
-    <button>Confirmar modalidad de entrega</button>
+    <button></button>
   </div>
 </body>
 </html>
